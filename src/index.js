@@ -48,8 +48,6 @@ window.addEventListener("load", (event) => {
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-
       if (memoryGame.pickedCards.length < 2) {
         card.classList.add("turned");
         memoryGame.pickedCards.push(card);
@@ -90,8 +88,29 @@ window.addEventListener("load", (event) => {
               ),
             2000
           );
+          document.querySelector("#btn-reset").style.visibility = "visible"; //adding a button to reset the game without having to reload the page
         }
       }
     });
+  });
+  //attempted to add a button to reset the game
+  //realized that the cards are set in place and id have to do more DOM manipulation
+  //this just resets the scores and flips the cards back over - no actual reset happens :(
+
+  const resetButton = document.querySelector("#btn-reset");
+  resetButton.addEventListener("click", () => {
+    if (resetButton.style.visibility === "visible") {
+      resetButton.style.visibility = "hidden";
+      document.querySelectorAll(".card").forEach((card) => {
+        card.classList.remove("turned", "blocked");
+      });
+      memoryGame.restartGame();
+      document.querySelector(
+        "#pairs-clicked"
+      ).innerText = `${memoryGame.pairsClicked}`;
+      document.querySelector(
+        "#pairs-guessed"
+      ).innerText = `${memoryGame.pairsGuessed}`;
+    }
   });
 });

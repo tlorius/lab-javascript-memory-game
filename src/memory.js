@@ -37,4 +37,11 @@ class MemoryGame {
     }
     return false;
   }
+
+  restartGame() {
+    this.pickedCards.splice(0, 2);
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
+    this.cards.shuffleCards();
+  }
 }
