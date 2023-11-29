@@ -12,7 +12,11 @@ class MemoryGame {
     if (this.cards === undefined) {
       return undefined;
     }
-    return this.cards.sort(() => Math.random() - 0.5);
+    for (let i = this.cards.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+    }
+    return this.cards;
   }
 
   checkIfPair(card1, card2) {

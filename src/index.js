@@ -68,17 +68,20 @@ window.addEventListener("load", (event) => {
             memoryGame.pickedCards[0].classList.remove("turned");
             memoryGame.pickedCards[1].classList.remove("turned");
           }, 1000);
-        }
+        } //cant use the same timeout for both as we need to empty the array and unlock the function regardless of the checkIfPair outcome
         setTimeout(() => {
           memoryGame.pickedCards.splice(0, 2);
           cardLock = false;
         }, 1000);
+        //updating on screen counters
         document.querySelector(
           "#pairs-clicked"
         ).innerText = `${memoryGame.pairsClicked}`;
+
         document.querySelector(
           "#pairs-guessed"
         ).innerText = `${memoryGame.pairsGuessed}`;
+        // sending alert if all pairs are found
         if (memoryGame.checkIfFinished()) {
           setTimeout(
             () =>
@@ -89,14 +92,6 @@ window.addEventListener("load", (event) => {
           );
         }
       }
-
-      //if statement: if picked cards.length is less than 2 we can turn the card
-      //on click we should add card to picked cards array
-      //once second card is picked - timeout function until they are turned back over
-      //if they match -> leave them turned over but call function to add points and clear out array
-      //if they dont match -> clear array and turn cards back over
-
-      //
     });
   });
 });
