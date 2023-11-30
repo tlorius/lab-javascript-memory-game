@@ -38,10 +38,11 @@ class MemoryGame {
     return false;
   }
 
-  restartGame() {
+  /* commented out method as code isn't functional as for now
+    restartGame() {
     this.pickedCards.splice(0, 2);
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
-    this.cards.shuffleCards();
-  }
+    this.shuffleCards();
+  }*/
 }

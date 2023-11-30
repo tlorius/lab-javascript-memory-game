@@ -28,7 +28,6 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 let cardLock = false;
 memoryGame.shuffleCards();
-console.log(memoryGame.cards);
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -93,14 +92,15 @@ window.addEventListener("load", (event) => {
       }
     });
   });
-  //attempted to add a button to reset the game
-  //realized that the cards are set in place and id have to do more DOM manipulation
-  //this just resets the scores and flips the cards back over - no actual reset happens :(
+  //attempted to add a button to reset the game - for now it just refreshes the page
 
   const resetButton = document.querySelector("#btn-reset");
   resetButton.addEventListener("click", () => {
     if (resetButton.style.visibility === "visible") {
-      resetButton.style.visibility = "hidden";
+      location.reload(); //As I didnt have more time to debug, I decided to make the button simply reload the page and
+      //comment out the code with which i attempted to reset the board.
+      // -
+      /*resetButton.style.visibility = "hidden";
       document.querySelectorAll(".card").forEach((card) => {
         card.classList.remove("turned", "blocked");
       });
@@ -111,6 +111,17 @@ window.addEventListener("load", (event) => {
       document.querySelector(
         "#pairs-guessed"
       ).innerText = `${memoryGame.pairsGuessed}`;
+      //attempting to reset the html
+      let html = "";
+      memoryGame.cards.forEach((pic) => {
+        html += `
+      <div class="card" data-card-name="${pic.name}">
+        <div class="back" name="${pic.img}"></div>
+        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+      </div>
+    `;
+      });
+      document.querySelector("#memory-board").innerHTML = html;*/
     }
   });
 });
